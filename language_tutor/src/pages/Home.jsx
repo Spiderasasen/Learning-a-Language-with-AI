@@ -1,4 +1,6 @@
 import Drop_down_selection_component from "../componets/Drop_down_selection_component.jsx";
+import "../styles/home_page.css";
+import "../styles/main.css";
 
 function Home() {
     return (
