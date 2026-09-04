@@ -1,3 +1,5 @@
+import "../styles/dropdown.css"
+
 function Drop_down_selection_component({id, null_option, option1, option2}){
     return(
         <div className="drop_down_section">
