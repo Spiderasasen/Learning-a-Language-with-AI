@@ -26,3 +26,16 @@
 }
 
 
+/*mobile view*/
+@media (max-width: 1024px) {
+    #home_card {
+        width: 60%;
+        margin: 20px auto;
+    }
+    #home_card h1 {
+        font-size: 24px;
+    }
+    #home_card > div {
+        margin-bottom: 15px;
+    }
+}

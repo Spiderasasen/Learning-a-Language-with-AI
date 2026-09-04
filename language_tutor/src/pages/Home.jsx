@@ -8,12 +8,13 @@ function Home() {
     const [language, setLanguage] = useState("");
 
     return (
-        <div>
+        <div className="main">
             <div id="home_card">
                 <h1>Welcome to an Ai tutor</h1>
 
                 {/*drop downs*/}
                 <div>
+                    {/*language selection*/}
                     <Drop_down_selection_component
                         id="language_selection"
                         null_option="Select a language"
@@ -22,6 +23,7 @@ function Home() {
                         onChange={(e) => setLanguage(e.target.value)}
                     />
 
+                    {/*level selection*/}
                     {language !== "" && (
                         <Drop_down_selection_component
                             id="level_selection"

@@ -26,3 +26,8 @@ button:hover {
 button:active {
     background-color: #346ea8;
 }
+
+/*main code that will be used on all sections*/
+.main{
+    font-family: Verdana, Arial, sans-serif;
+}
