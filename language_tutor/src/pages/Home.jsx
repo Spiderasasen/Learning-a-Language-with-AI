@@ -1,8 +1,12 @@
 import Drop_down_selection_component from "../componets/Drop_down_selection_component.jsx";
 import "../styles/home_page.css";
 import "../styles/main.css";
+import {useState} from "react";
 
 function Home() {
+
+    const [language, setLanguage] = useState("");
+
     return (
         <div>
             <div id="home_card">
@@ -10,12 +14,22 @@ function Home() {
 
                 {/*drop downs*/}
                 <div>
-                    <Drop_down_selection_component id="language_selection"
-                                                   null_option="Select a language" option1="Spanish" option2="German"
+                    <Drop_down_selection_component
+                        id="language_selection"
+                        null_option="Select a language"
+                        option1="Spanish"
+                        option2="German"
+                        onChange={(e) => setLanguage(e.target.value)}
                     />
-                    <Drop_down_selection_component id="level_selection"
-                                                   null_option="Select a level" option1="Beginner" option2="Intermediate"
-                    />
+
+                    {language !== "" && (
+                        <Drop_down_selection_component
+                            id="level_selection"
+                            null_option="Select a level"
+                            option1="Beginner"
+                            option2="Intermediate"
+                        />
+                    )}
                 </div>
 
                 {/*going to another page*/}
