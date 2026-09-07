@@ -1,4 +1,5 @@
 import Drop_down_selection_component from "../componets/Drop_down_selection_component.jsx";
+import {NavLink} from "react-router-dom";
 import "../styles/home_page.css";
 import "../styles/main.css";
 import {useState} from "react";
@@ -36,7 +37,7 @@ function Home() {
 
                 {/*going to another page*/}
                 <div className="button_section">
-                    <button id="next_button">Next</button>
+                    <button><NavLink to="/selection">Next</NavLink></button>
                 </div>
 
             </div>

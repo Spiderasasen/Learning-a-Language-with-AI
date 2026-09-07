@@ -31,3 +31,9 @@ button:active {
 .main{
     font-family: Verdana, Arial, sans-serif;
 }
+
+/*NavLink styling*/
+NavLink{
+    text-decoration: none;
+    color: #ffffff;
+}
