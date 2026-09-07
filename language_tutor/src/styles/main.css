@@ -4,7 +4,7 @@
 }
 
 /* Next button */
-button{
+.button{
     width: 160px;
     padding: 12px 0;
     font-size: 16px;
@@ -14,26 +14,21 @@ button{
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
 }
 
 /* Hover */
-button:hover {
+.button:hover {
     background-color: #3b7ac0;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Active click */
-button:active {
+.button:active {
     background-color: #346ea8;
 }
 
 /*main code that will be used on all sections*/
 .main{
     font-family: Verdana, Arial, sans-serif;
-}
-
-/*NavLink styling*/
-NavLink{
-    text-decoration: none;
-    color: #ffffff;
 }

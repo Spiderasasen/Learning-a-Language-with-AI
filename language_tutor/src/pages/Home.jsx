@@ -37,7 +37,7 @@ function Home() {
 
                 {/*going to another page*/}
                 <div className="button_section">
-                    <button><NavLink to="/selection">Next</NavLink></button>
+                    <NavLink to="/selection" className="button">Next</NavLink>
                 </div>
 
             </div>
