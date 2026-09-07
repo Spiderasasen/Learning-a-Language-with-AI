@@ -1,5 +1,5 @@
 import "../styles/main.css"
-import Drilling from "../assets/477-4770692_transparent-study-icon-png-studying-clipart-black-and.png"
+import Drilling from "../assets/edited-photo.png"
 import Practice from "../assets/two-people-conversing-with-language-symbols-solid-icon-multilingual-communication-translation-and-language-exchange-silhouette-symbol-isolated-illustration-vector.jpg"
 import "../styles/selection.css"
 import {NavLink} from "react-router-dom";
