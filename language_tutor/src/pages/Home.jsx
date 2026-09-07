@@ -7,6 +7,7 @@ import {useState} from "react";
 function Home() {
 
     const [language, setLanguage] = useState("");
+    const [level, setLevel] = useState("");
 
     return (
         <div className="main">
@@ -31,14 +32,17 @@ function Home() {
                             null_option="Select a level"
                             option1="Beginner"
                             option2="Intermediate"
+                            onChange={(e) => setLevel(e.target.value)}
                         />
                     )}
                 </div>
 
                 {/*going to another page*/}
-                <div className="button_section">
-                    <NavLink to="/selection" className="button">Next</NavLink>
-                </div>
+                {((language !== "") && (level !== "")) && (
+                    <div className="button_section">
+                        <NavLink to="/selection" className="button">Next</NavLink>
+                    </div>
+                )}
 
             </div>
         </div>
