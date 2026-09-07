@@ -12,8 +12,14 @@ function Selection() {
 
                 {/*selection on 2 systems, drilling or practice*/}
                 <div id="image_section">
-                    <img src={Practice} alt="Practice" className="image"/>
-                    <img src={Drilling} alt="Drilling" className="image"/>
+                    <div>
+                        <img src={Practice} alt="Practice" className="image"/>
+                        <p>Practice</p>
+                    </div>
+                    <div>
+                        <img src={Drilling} alt="Drilling" className="image"/>
+                        <p>Drilling</p>
+                    </div>
                 </div>
 
                 <div className="button_section">
