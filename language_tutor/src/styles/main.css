@@ -4,29 +4,36 @@
 }
 
 /* Next button */
-.button{
-    width: 160px;
-    padding: 12px 0;
-    font-size: 16px;
+.button_section {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style the NavLink like a real button */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
     background-color: #4a90e2;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #3b7ac0;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Hover */
 .button:hover {
     background-color: #3b7ac0;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
 /* Active click */
 .button:active {
     background-color: #346ea8;
 }
+
 
 /*main code that will be used on all sections*/
 .main{
