@@ -1,0 +1,138 @@
+/* Main wrapper */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Main practice card */
+#prcactice_card {
+    width: 600px;
+    background-color: #ffffff;
+    border: 2px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 30px 35px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    margin-bottom: 40px;
+}
+
+/* Title section */
+.card-title h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-title h2,
+.card-title h3 {
+    font-size: 18px;
+    color: #555;
+    margin: 4px 0;
+}
+
+/* AI + User chat section */
+#ai_section {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* AI text bubble */
+#ai_text {
+    background-color: #e6e6e6;
+    border: 2px solid #c8c8c8;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* User input bubble */
+#user_text input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #c8c8c8;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+/* Footer buttons */
+.card-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-footer button {
+    width: 48%;
+    padding: 12px 0;
+    font-size: 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-footer button:hover {
+    background-color: #3b7ac0;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.card-footer button:active {
+    background-color: #346ea8;
+}
+
+/* Summary card */
+#ai_summary {
+    width: 600px;
+    background-color: #ffffff;
+    border: 2px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.summary h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.summary p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Leave button */
+.button_sectiont {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button_sectiont .button {
+    width: 160px;
+    padding: 12px 0;
+    font-size: 16px;
+    background-color: #e24a4a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button_sectiont .button:hover {
+    background-color: #c03b3b;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.button_sectiont .button:active {
+    background-color: #a83434;
+}

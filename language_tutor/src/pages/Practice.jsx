@@ -1,4 +1,6 @@
 import "../styles/main.css"
+import "../styles/practice.css"
+import {NavLink} from "react-router-dom";
 
 function Practice() {
     return (
@@ -31,7 +33,7 @@ function Practice() {
                     <p>ai summary goes here</p>
                 </div>
                 <div className="button_sectiont">
-                    <button>Leave</button>
+                    <NavLink to="/selection" className="button">Go Back</NavLink>
                 </div>
             </div>
         </div>
