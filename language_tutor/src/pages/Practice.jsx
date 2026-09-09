@@ -1,6 +1,40 @@
+import "../styles/main.css"
+
 function Practice() {
     return (
-        <div>Practice</div>
+        <div className="main">
+            {/*where the roleplay between the user and the ai will be*/}
+            <div id="prcactice_card">
+                <div className="card-title">
+                    <h1>Practice</h1>
+                    <h2>Insert Language here: insert level here</h2>
+                    <h3>Roleplay Senicro: insert roleplay senciro here</h3>
+                </div>
+                <div id="ai_section">
+                    <div id="ai_text">
+                        <p>ai response goes here</p>
+                    </div>
+                    <div id="user_text">
+                        <input type="text" placeholder="Type here"/>
+                    </div>
+                </div>
+                <div className="card-footer">
+                    <button>Send</button>
+                    <button>End Practice</button>
+                </div>
+            </div>
+
+            {/*the ai summary will be here*/}
+            <div id="ai_summary">
+                <div className="summary">
+                    <h2>Summary</h2>
+                    <p>ai summary goes here</p>
+                </div>
+                <div className="button_sectiont">
+                    <button>Leave</button>
+                </div>
+            </div>
+        </div>
     )
 }
 export default Practice;
