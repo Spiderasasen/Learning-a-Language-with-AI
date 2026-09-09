@@ -1,14 +1,18 @@
 import "../styles/main.css"
 import "../styles/drilling.css"
 import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {SelectionContext} from "../componets/SelectionContext.jsx";
 
 function Drilling() {
+    const {language, level} = useContext(SelectionContext);
+
     return (
         <div className="main">
             <div id="drilling_card">
                 <div className="card-title">
                     <h1>Drilling</h1>
-                    <h2>Insert Language here: insert level here</h2>
+                    <h2>{language}: {level}</h2>
                 </div>
                 <div id="drilling_content">
                     <h2>Word</h2>

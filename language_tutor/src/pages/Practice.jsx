@@ -1,15 +1,19 @@
 import "../styles/main.css"
 import "../styles/practice.css"
 import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {SelectionContext} from "../componets/SelectionContext.jsx";
 
 function Practice() {
+    const {language, level} = useContext(SelectionContext);
+
     return (
         <div className="main">
             {/*where the roleplay between the user and the ai will be*/}
             <div id="prcactice_card">
                 <div className="card-title">
                     <h1>Practice</h1>
-                    <h2>Insert Language here: insert level here</h2>
+                    <h2>{language}: {level}</h2>
                     <h3>Roleplay Senicro: insert roleplay senciro here</h3>
                 </div>
                 <div id="ai_section">

@@ -2,12 +2,11 @@ import Drop_down_selection_component from "../componets/Drop_down_selection_comp
 import {NavLink} from "react-router-dom";
 import "../styles/home_page.css";
 import "../styles/main.css";
-import {useState} from "react";
+import {useContext} from "react";
+import {SelectionContext } from "../componets/SelectionContext.jsx";
 
 function Home() {
-
-    const [language, setLanguage] = useState("");
-    const [level, setLevel] = useState("");
+    const { language, setLanguage, level, setLevel } = useContext(SelectionContext);
 
     return (
         <div className="main">
