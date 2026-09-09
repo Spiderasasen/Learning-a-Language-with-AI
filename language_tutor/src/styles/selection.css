@@ -18,8 +18,14 @@
     margin-top: 25px;
 }
 
+/* Remove default link styling */
+.nav {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Each card (image + label) */
-#image_section > div {
+#image_section > a.nav > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,14 +40,14 @@
 }
 
 /* Hover effect for the whole card */
-#image_section > div:hover {
+#image_section > a.nav > div:hover {
     transform: translateY(-4px);
     border-color: #4a90e2;
     box-shadow: 0 4px 14px rgba(0,0,0,0.18);
 }
 
 /* Active click effect */
-#image_section > div:active {
+#image_section > a.nav > div:active {
     transform: scale(0.97);
     box-shadow: 0 1px 6px rgba(0,0,0,0.15);
 }
@@ -61,4 +67,3 @@
     color: #333;
     margin: 0;
 }
-
