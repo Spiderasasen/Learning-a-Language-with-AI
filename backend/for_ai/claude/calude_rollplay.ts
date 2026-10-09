@@ -7,7 +7,16 @@ const apiKey = process.env.ANTHROPIC_API_KEY;
 //this works. we just need the api key to be hidden first
 const client = new Anthropic({apiKey: apiKey});
 
+//an array to hold all the user messages
+export let conversationHistory: { role: "user" | "assistant"; content: string }[] = [];
+
 export async function sendRoleplayMessage(userMessage: string, lang: string, level: string, location: string){
+    // Add the user's message to history
+    conversationHistory.push({
+        role: "user",
+        content: userMessage
+    });
+
     const response = await client.messages.create({
         model: "claude-opus-5-5",
         max_tokens: 500,
@@ -25,12 +34,7 @@ All summaries must always be in English.
 Begin by starting the conversation in the target language.
 `,
 
-        messages: [
-            {
-                role: "user",
-                content: userMessage
-            }
-        ]
+        messages: conversationHistory
     });
 
 
@@ -39,6 +43,12 @@ Begin by starting the conversation in the target language.
         .filter(block => block.type === "text")
         .map(block => block.text)
         .join("\n");
+
+    // Add Claude's reply to history
+    conversationHistory.push({
+        role: "assistant",
+        content: text
+    });
 
     return text;
 }
