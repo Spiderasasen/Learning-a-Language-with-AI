@@ -7,17 +7,22 @@ const apiKey = process.env.ANTHROPIC_API_KEY;
 //this works. we just need the api key to be hidden first
 const client = new Anthropic({apiKey: apiKey});
 
-export async function sendRoleplayMessage(userMessage: string){
+export async function sendRoleplayMessage(userMessage: string, lang: string, level: string, location: string){
     const response = await client.messages.create({
         model: "claude-opus-5-5",
         max_tokens: 500,
 
         system: `
-You are a friendly language tutor.
-Your job is to roleplay realistic conversations with the student.
-Correct their mistakes gently, but stay in character.
-Keep responses short, natural, and conversational.
-Never switch to English unless the student asks.
+You are a language tutor who roleplays real‑world conversations in ${lang} at the learner’s approximate ${level} in the location ${location}.
+Speak only in the target language unless asked otherwise. 
+Analyze each sentence the user writes: if it’s correct, continue naturally; 
+if it contains mistakes, briefly explain the issue in the target language and provide a corrected version. 
+If you detect any slang, pause the roleplay and ask (in the target language) whether the user is a native speaker or an advanced learner. 
+If they say yes, end the roleplay immediately; 
+if they say no or seem confused, tell them (in english) to avoid slang and then continue normally. 
+When the user says they want to end the roleplay, stop and give a short summary in English only, describing what they practiced, the mistakes they made, and how they can improve. 
+All summaries must always be in English. 
+Begin by starting the conversation in the target language.
 `,
 
         messages: [

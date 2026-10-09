@@ -1,8 +1,8 @@
 import { sendRoleplayMessage } from "./calude_rollplay";
 
-async function test() {
-    const reply = await sendRoleplayMessage("Hola, quiero practicar español contigo.");
+async function test(message: string, lang: string, level: string, location: string) {
+    const reply = await sendRoleplayMessage(message, lang, level, location);
     console.log("Claude:", reply);
 }
 
-test();
+test("Hallo guten Tag. Hast du Kaffee oder Tee?", "German", "Intermediate", "cafe");
