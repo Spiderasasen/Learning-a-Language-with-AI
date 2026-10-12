@@ -11,7 +11,8 @@ function Home() {
     return (
         <div className="main">
             <div className="home_card">
-                <h1>Welcome to an Ai tutor</h1>
+                <h1>Welcome to EULIA</h1>
+                <h2>Elon.University's.Linguistics.Intelgense.Artificial</h2>
 
                 {/*drop downs*/}
                 <div>
