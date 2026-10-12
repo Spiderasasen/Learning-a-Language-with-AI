@@ -19,8 +19,7 @@ export async function sendRoleplayMessage(userMessage: string, lang: string, lev
 
     const response = await client.messages.create({
         model: "claude-opus-5-5",
-        max_tokens: 500,
-
+        max_tokens: 1000,
         system: `
 You are a language tutor who roleplays real‑world conversations in ${lang} at the learner’s approximate ${level} in the location ${location}.
 Speak only in the target language unless asked otherwise. 

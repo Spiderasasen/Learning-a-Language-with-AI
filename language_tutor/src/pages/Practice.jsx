@@ -1,8 +1,10 @@
 import "../styles/main.css"
 import "../styles/practice.css"
+import "../styles/loading.css"
 import {NavLink} from "react-router-dom";
 import {useContext, useState} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
+import locations from "../data/locations.json";
 
 /*TODO:
 * Fixing the frontend:
@@ -17,7 +19,7 @@ function Practice() {
     //api parts
     const [userInput, setUserInput] = useState("");
     const [aiResponse, setAiResponse] = useState("");
-    const location_role = "cafe";
+    const location_role = locations[Math.floor(Math.random() * locations.length)];
 
     //sending a message to the ai
     async function sendMessage(){
@@ -132,7 +134,7 @@ function Practice() {
                     <label htmlFor="ai_response">EULIA Response</label>
 
                     {loading ? (
-                        <p className="loading">EULIA is thinking...</p>
+                        <div className="typing-loader">EULIA is thinking<span className="dots"></span></div>
                     ) : (
                         <textarea
                             id="ai_response"
