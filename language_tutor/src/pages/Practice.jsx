@@ -99,8 +99,10 @@ function Practice() {
     }
 
     async function clearConversationHistory(){
-        await fetch("http://localhost:3001/api/reset");
-        console.log("Conversation history cleared");
+        await fetch("http://localhost:3001/api/reset", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+        });
     }
 
 

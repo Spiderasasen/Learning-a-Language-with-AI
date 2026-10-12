@@ -27,14 +27,14 @@ app.post("/api/roleplay", async (req, res) => {
 });
 
 app.post("/api/reset", (req, res) => {
-   clearConversationHistory();
-   res.json({status: "Conversation history cleared"});
+    clearConversationHistory();
+    res.json({ status: "cleared" });
 });
 
 //sending the server to the port 3001
 app.listen(3001, () => {
     console.log("server is running on http://localhost:3001")
-})
+});
 
 //making sure this works on vite by adding this
 app.use(cors({
