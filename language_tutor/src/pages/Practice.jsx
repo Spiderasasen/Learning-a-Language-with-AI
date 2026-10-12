@@ -2,24 +2,24 @@ import "../styles/main.css"
 import "../styles/practice.css"
 import "../styles/loading.css"
 import {NavLink} from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext, useState, useRef} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
 import locations from "../data/locations.json";
-
-/*TODO:
-* Fixing the frontend:
-* make a data set for the locations to make it feel more realistic
-* */
 
 function Practice() {
     const {language, level} = useContext(SelectionContext);
     const [started, setStarted] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    //so the ai forgets its conversation history
+    const historyRef = useRef([]);
+
     //api parts
     const [userInput, setUserInput] = useState("");
     const [aiResponse, setAiResponse] = useState("");
-    const location_role = locations[Math.floor(Math.random() * locations.length)];
+    const [location_role] = useState(
+        () => locations[Math.floor(Math.random() * locations.length)]
+    );
 
     //sending a message to the ai
     async function sendMessage(){
@@ -42,7 +42,8 @@ function Practice() {
                     message: messageToSend,
                     lang: language,
                     level: level,
-                    location: location_role
+                    location: location_role,
+                    history: historyRef.current
                 })
             });
 
@@ -54,6 +55,11 @@ function Practice() {
             console.log("Sending:", { userInput, language, level, location_role });
 
             const data = await res.json();
+            historyRef.current = [
+                ...historyRef.current,
+                { role: "user", content: messageToSend },
+                { role: "assistant", content: data.reply }
+            ];
             console.log("Received:", data);
 
             //the ai got the message and responded
@@ -82,11 +88,17 @@ function Practice() {
                     message: "end",
                     lang: language,
                     level: level,
-                    location: location_role
+                    location: location_role,
+                    history: historyRef.current
                 })
             });
 
             const data = await res.json();
+            historyRef.current = [
+                ...historyRef.current,
+                { role: "user", content: "end" },
+                { role: "assistant", content: data.reply }
+            ];
             setLoading(false);
             setAiResponse(data.reply);
         }
@@ -100,11 +112,8 @@ function Practice() {
 
     }
 
-    async function clearConversationHistory(){
-        await fetch("/api/reset_roleplay", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" }
-        });
+    function clearConversationHistory() {
+        historyRef.current = [];
     }
 
 
@@ -120,7 +129,7 @@ function Practice() {
             {/*where the roleplay between the user and the ai will be*/}
             <div id="roleplay_card">
                 <div className="user_input">
-                    <label for="user_input">Your Input</label>
+                    <label htmlFor="user_input">Your Input</label>
                     <input id="user_input"
                            type="text"
                            placeholder="Type here"

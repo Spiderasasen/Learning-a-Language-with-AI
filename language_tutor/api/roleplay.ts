@@ -9,9 +9,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== "POST") return res.status(405).end();
 
     try {
-        const { userMessage, lang, level, location, history = [] } = req.body;
+        const { message, lang, level, location, history = []  } = req.body;
 
-        const messages: Msg[] = [...history, { role: "user", content: userMessage }];
+        const messages: Msg[] = [...history, { role: "user", content: message }];
 
         const response = await client.messages.create({
             model: "claude-opus-5-5",
@@ -36,7 +36,7 @@ Begin by starting the conversation in the target language.
             .map((block) => block.text)
             .join("\n");
 
-        res.status(200).json({ text });
+        res.status(200).json({ reply:text });
     } catch (e: any) {
         console.error(e);
         res.status(500).json({ error: e.message });
