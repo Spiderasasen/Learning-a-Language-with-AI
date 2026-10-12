@@ -1,0 +1,12 @@
+{
+  "name": "learning-a-language-with-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'No frontend build needed'",
+    "vercel-build": "echo 'Vercel build step'"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0"
+  }
+}
