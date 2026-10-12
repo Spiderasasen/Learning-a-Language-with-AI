@@ -6,17 +6,13 @@ import {SelectionContext} from "../componets/SelectionContext.jsx";
 
 /*TODO:
 * Fixing the frontend:
-* Where when the user clicks the start button, the ai should responsd
-* when the user clicks on there input box, the contents of the box get deleted
-* when the user clicks on the end button, the conversation should end and display the summary report made by the ai
 * make a data set for the locations to make it feel more realistic
-* IMPORTANT:
-* make the ai fill there response box and not just display it all in one line
 * */
 
 function Practice() {
     const {language, level} = useContext(SelectionContext);
     const [started, setStarted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     //api parts
     const [userInput, setUserInput] = useState("");
@@ -25,26 +21,88 @@ function Practice() {
 
     //sending a message to the ai
     async function sendMessage(){
-        const res = await fetch("http://localhost:3001/api/roleplay", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: userInput,
-                lang: language,
-                level: level,
-                location: location_role
-            })
-        });
+        //waiting for the api to respond
+        setLoading(true);
 
-        console.log("Sending:", { userInput, language, level, location_role });
+        try{
+            //before anything happens, the history of the conversation is cleared
+            console.log("clearing history");
 
-        const data = await res.json();
-        console.log("Received:", data);
+            const messageToSend = userInput.trim() === "" ? "start" : userInput; //this handels empty messages for the start button
+            console.log("sendMessage fired, input:", userInput);
 
-        setAiResponse(data.replay);
+            const res = await fetch("http://localhost:3001/api/roleplay", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: messageToSend,
+                    lang: language,
+                    level: level,
+                    location: location_role
+                })
+            });
+
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(`Server ${res.status}: ${text}`);
+            }
+
+            console.log("Sending:", { userInput, language, level, location_role });
+
+            const data = await res.json();
+            console.log("Received:", data);
+
+            //the ai got the message and responded
+            setLoading(false);
+            setAiResponse(data.reply);
+        }
+        catch(err){ //if there is an error, it will show the error
+            console.log(err);
+            setLoading(false);
+            setAiResponse("Sever error");
+        }
+        finally{ //no matter what happens, the loading bar will stop
+            setLoading(false);
+        }
     }
+
+    //checking if the user clicked the end button
+    async function endConversation(){
+        setLoading(true);
+
+        try{
+            const res = await fetch("http://localhost:3001/api/roleplay", {
+                method: "POST",
+                headers: {"Content-Type": "application/json" },
+                body: JSON.stringify({
+                    message: "end",
+                    lang: language,
+                    level: level,
+                    location: location_role
+                })
+            });
+
+            const data = await res.json();
+            setLoading(false);
+            setAiResponse(data.reply);
+        }
+        catch(err){
+            console.log(err);
+            setAiResponse("Sever error");
+        }
+        finally{
+            setLoading(false);
+        }
+
+    }
+
+    async function clearConversationHistory(){
+        await fetch("http://localhost:3001/api/reset");
+        console.log("Conversation history cleared");
+    }
+
 
     return (
         <div className="main">
@@ -64,17 +122,25 @@ function Practice() {
                            placeholder="Type here"
                            value={userInput}
                            onChange={(e) => setUserInput(e.target.value)}
-                            />
+                    />
                 </div>
 
+                {/*ai response area*/}
                 <div className="ai_response">
-                    <label for="ai_response">EULIA Response</label>
-                    <input id="ai_response"
-                           type="text"
-                           placeholder="EULIA response goes here"
-                           value={aiResponse}
-                           readOnly/>
+                    <label htmlFor="ai_response">EULIA Response</label>
+
+                    {loading ? (
+                        <p className="loading">EULIA is thinking...</p>
+                    ) : (
+                        <textarea
+                            id="ai_response"
+                            placeholder="EULIA response goes here"
+                            value={aiResponse}
+                            readOnly
+                        />
+                    )}
                 </div>
+
             </div>
 
             {/*buttons that will be used for roleplay*/}
@@ -82,7 +148,13 @@ function Practice() {
                 {/*checking if the user clicked the start button*/}
                 {!started && (
                     <>
-                        <button id="start_button" onClick={() => setStarted(true)}>
+                        <button id="start_button"
+                        onClick = {() => {
+                            setStarted(true);
+                            clearConversationHistory();
+                            sendMessage();
+                            setUserInput("");
+                        }}>
                             Start
                         </button>
                         {/*the only button that is called NavLink*/}
@@ -101,7 +173,7 @@ function Practice() {
                             id="end_button"
                             onClick={() => {
                                 setStarted(false);
-                                setAiResponse("");
+                                endConversation();
                                 setUserInput("");
                             }}
                         >

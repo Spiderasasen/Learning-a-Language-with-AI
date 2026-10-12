@@ -2,7 +2,7 @@
 import express from 'express';
 // @ts-ignore
 import cors from 'cors';
-import { sendRoleplayMessage, conversationHistory}  from "./calude_rollplay";
+import { sendRoleplayMessage, conversationHistory, clearConversationHistory}  from "./calude_rollplay";
 
 const app = express();
 app.use(cors());
@@ -24,6 +24,11 @@ app.post("/api/roleplay", async (req, res) => {
         console.log(err);
         res.status(500).json({error: "Sever error"});
     }
+});
+
+app.post("/api/reset", (req, res) => {
+   clearConversationHistory();
+   res.json({status: "Conversation history cleared"});
 });
 
 //sending the server to the port 3001

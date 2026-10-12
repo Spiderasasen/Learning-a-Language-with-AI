@@ -52,3 +52,5 @@ Begin by starting the conversation in the target language.
 
     return text;
 }
+
+export function clearConversationHistory(){conversationHistory = []}
