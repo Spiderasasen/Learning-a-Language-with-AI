@@ -1,4 +1,4 @@
-import { clearConversationHistory } from "../backend/for_ai/claude/calude_rollplay";
+import { clearConversationHistory } from "../../backend/for_ai/claude/calude_rollplay";
 
 export default function handler(req, res) {
     clearConversationHistory();
