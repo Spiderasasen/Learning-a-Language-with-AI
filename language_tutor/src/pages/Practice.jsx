@@ -33,7 +33,7 @@ function Practice() {
             const messageToSend = userInput.trim() === "" ? "start" : userInput; //this handels empty messages for the start button
             console.log("sendMessage fired, input:", userInput);
 
-            const res = await fetch("http://localhost:3001/api/roleplay", {
+            const res = await fetch("/api/roleplay", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -75,7 +75,7 @@ function Practice() {
         setLoading(true);
 
         try{
-            const res = await fetch("http://localhost:3001/api/roleplay", {
+            const res = await fetch("/api/roleplay", {
                 method: "POST",
                 headers: {"Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -101,7 +101,7 @@ function Practice() {
     }
 
     async function clearConversationHistory(){
-        await fetch("http://localhost:3001/api/reset", {
+        await fetch("/api/reset_roleplay", {
             method: "POST",
             headers: { "Content-Type": "application/json" }
         });
