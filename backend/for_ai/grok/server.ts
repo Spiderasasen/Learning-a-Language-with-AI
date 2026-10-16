@@ -22,6 +22,22 @@ app.post("/api/drilling", async (req, res) => {
     }
 });
 
+app.post("/api/checkSentence", async (req, res) => {
+    try {
+        const { lang, level, word, sentence } = req.body;
+        console.log("Received:", req.body);
+
+        const aiResponse = await checkSentence(lang, level, word, sentence);
+        console.log("AI Response:", aiResponse);
+
+        res.json({ aiResponse });
+    }
+    catch(e){
+        console.log(e);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
 //sending the server to port 3001
 app.listen(3001, () => console.log("Server is running on port 3001"));
 

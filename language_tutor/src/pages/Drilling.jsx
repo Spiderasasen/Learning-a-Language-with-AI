@@ -7,12 +7,14 @@ import {SelectionContext} from "../componets/SelectionContext.jsx";
 function Drilling() {
     const {language, level} = useContext(SelectionContext);
 
-    //getting the word from the ai model
+    //use states for the website
     const [aiWord, setAiWord] = useState("");
-
     const [sendButton, setSendButton] = useState(false);
     const [startButton, setStartButton] = useState(true);
+    const [userSentence, setUserSentence] = useState("");
+    const [aiResponse, setAiResponse] = useState("");
 
+    //getting the word from the ai
     async function getWord(){
         const res = await fetch("http://localhost:3001/api/drilling", {
             method: "POST",
@@ -25,6 +27,25 @@ function Drilling() {
 
         const data = await res.json();
         setAiWord(data.word);
+    }
+
+    //getting the response from the ai from the users sentence
+    async function getResponse(){
+        const res = await fetch("http://localhost:3001/api/checkSentence", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(
+                {
+                    lang: language,
+                    level: level,
+                    word: aiWord,
+                    sentence: userSentence
+                }
+            )
+        });
+
+        const response = await res.json();
+        setAiResponse(response.aiResponse);
     }
 
     return (
@@ -40,7 +61,12 @@ function Drilling() {
                                   readOnly/>
                     </div>
                     <div id="user_input">
-                        <input type="text" placeholder="Type a sentince here"/>
+                        <input
+                            type="text"
+                            placeholder="Type a sentence here"
+                            value={userSentence}
+                            onChange={(e) => setUserSentence(e.target.value)}
+                        />
                     </div>
                     <div className="card-footer">
 
@@ -60,9 +86,7 @@ function Drilling() {
                         {/* SEND BUTTON */}
                         {sendButton && (
                             <button
-                                // onClick={() => {
-                                //     getWord();
-                                // }}
+                                onClick={getResponse}
                             >
                                 Send
                             </button>
@@ -83,8 +107,9 @@ function Drilling() {
                 </div>
                 <div id="ai_summary">
                     <div className="summary">
-                        <h2>Summary</h2>
-                        <p>ai summary goes here</p>
+                        <textarea placeholder={"EULIA's response goes here"}
+                                  value={aiResponse}
+                                  readOnly />
                     </div>
                     <div className="button_sectiont">
                         <NavLink to="/selection" className="button">Go Back</NavLink>
