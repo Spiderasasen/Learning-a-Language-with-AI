@@ -1,5 +1,6 @@
 import "../styles/main.css"
 import "../styles/drilling.css"
+import "../styles/loading.css"
 import {NavLink} from "react-router-dom";
 import {useContext, useState} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
@@ -13,118 +14,168 @@ function Drilling() {
     const [startButton, setStartButton] = useState(true);
     const [userSentence, setUserSentence] = useState("");
     const [aiResponse, setAiResponse] = useState("");
+    const [loadingWord, setLoadingWord] = useState(false);
+    const [loadingResponse, setLoadingResponse] = useState(false);
 
     //getting the word from the ai
     async function getWord(){
-        const res = await fetch("http://localhost:3001/api/drilling", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                lang: language,
-                level: level
-            })
-        });
+        setLoadingWord(true);
 
-        const data = await res.json();
-        setAiWord(data.word);
+        try{
+            const res = await fetch("http://localhost:3001/api/drilling", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    lang: language,
+                    level: level
+                })
+            });
+
+            const data = await res.json();
+            setAiWord(data.word);
+        }
+        catch(err){
+            console.log(err);
+            setAiWord("Sever error");
+        }
+        finally{
+            setLoadingWord(false);
+        }
+
     }
 
     //getting the response from the ai from the users sentence
     async function getResponse(){
-        const res = await fetch("http://localhost:3001/api/checkSentence", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(
-                {
-                    lang: language,
-                    level: level,
-                    word: aiWord,
-                    sentence: userSentence
-                }
-            )
-        });
+        setLoadingResponse(true);
+        try{
+            const res = await fetch("http://localhost:3001/api/checkSentence", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(
+                    {
+                        lang: language,
+                        level: level,
+                        word: aiWord,
+                        sentence: userSentence
+                    }
+                )
+            });
 
-        const response = await res.json();
-        setAiResponse(response.aiResponse);
+            const response = await res.json();
+            setAiResponse(response.aiResponse);
 
-        return response.aiResponse;
+            return response.aiResponse;
+        }
+        catch(err){
+            console.log(err);
+            setAiResponse("Sever error");
+        }
+        finally {
+            setLoadingResponse(false);
+        }
     }
 
     return (
-        <div className="main">
-            <div id="drilling_card">
-                    <div className="card-title">
-                        <h1>Drilling</h1>
-                        <h2>{language}: {level}</h2>
-                    </div>
-                    <div id="drilling_content">
-                        <textarea placeholder="EULIA's word goes here"
-                                  value={aiWord}
-                                  readOnly/>
-                    </div>
-                    <div id="user_input">
-                        <input
-                            type="text"
-                            placeholder="Type a sentence here"
-                            value={userSentence}
-                            onChange={(e) => setUserSentence(e.target.value)}
-                        />
-                    </div>
-                    <div className="card-footer">
+        <div className="main drilling-wrapper">
 
-                        {/* START BUTTON */}
-                        {startButton && (
-                            <button
-                                onClick={() => {
-                                    getWord();
-                                    setStartButton(false);
-                                    setSendButton(true);
-                                }}
-                            >
-                                Start
-                            </button>
+            {/* HEADER */}
+            <div className="drilling-header">
+                <h1>Drilling Practice</h1>
+                <p className="sub-info">{language} • {level}</p>
+            </div>
+
+            {/* MAIN CARD */}
+            <div className="drilling-card">
+
+                {/* AI WORD */}
+                <div className="section">
+                    <label className="section-label">EULIA Word</label>
+                    {loadingWord ? (<div className="typing-loader">EULIA is getting your word<span className="dots"></span></div>)
+                    : (
+                            <textarea
+                                className="section-box"
+                                placeholder="EULIA's word will appear here"
+                                value={aiWord}
+                                readOnly
+                            />
                         )}
+                </div>
 
-                        {/* SEND BUTTON */}
-                        {sendButton && (
+                {/* USER SENTENCE */}
+                <div className="section">
+                    <label className="section-label">Your Sentence</label>
+                    <input
+                        className="section-input"
+                        type="text"
+                        placeholder="Type your sentence here..."
+                        value={userSentence}
+                        onChange={(e) => setUserSentence(e.target.value)}
+                    />
+                </div>
+
+                {/* BUTTONS */}
+                <div className="button-row">
+                    {startButton && (
+                        <button
+                            className="btn primary"
+                            onClick={() => {
+                                getWord();
+                                setStartButton(false);
+                                setSendButton(true);
+                            }}
+                        >
+                            Start
+                        </button>
+                    )}
+
+                    {sendButton && (
+                        <>
                             <button
+                                className="btn primary"
                                 onClick={async () => {
                                     const response = await getResponse();
-                                    console.log("Response:", response);
                                     if (response === "Sentence is good and understable") {
-                                        console.log("Sentence is good and understable, getting a new word");
+                                        setUserSentence("");
                                         await getWord();
                                     }
-
                                 }}
                             >
                                 Send
                             </button>
-                        )}
 
-                        {/* STOP BUTTON */}
-                        {sendButton && (
                             <button
+                                className="btn danger"
                                 onClick={() => {
                                     setStartButton(true);
                                     setSendButton(false);
-                                    setAiWord(""); // optional: clear the word
+                                    setAiWord("");
+                                    setAiResponse("");
                                 }}
                             >
                                 Stop
                             </button>
-                        )}
+                        </>
+                    )}
                 </div>
-                <div id="ai_summary">
-                    <div className="summary">
-                        <textarea placeholder={"EULIA's response goes here"}
-                                  value={aiResponse}
-                                  readOnly />
-                    </div>
-                    <div className="button_sectiont">
-                        <NavLink to="/selection" className="button">Go Back</NavLink>
-                    </div>
-                </div>
+            </div>
+
+            {/* AI SUMMARY */}
+            <div className="summary-card">
+                <label className="section-label">EULIA Summary</label>
+                {loadingResponse ? (<div className="typing-loader">EULIA is thinking<span className="dots"></span></div>) : (
+                    <textarea
+                        className="section-box"
+                        placeholder="EULIA's feedback will appear here"
+                        value={aiResponse}
+                        readOnly
+                    />
+                )}
+
+                {startButton && (
+                    <NavLink to="/selection" className="btn back-btn">
+                        Go Back
+                    </NavLink>
+                )}
             </div>
         </div>
     )

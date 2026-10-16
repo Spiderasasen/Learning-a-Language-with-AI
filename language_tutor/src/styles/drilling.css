@@ -1,103 +1,118 @@
-/* Main wrapper */
+/* Page wrapper */
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 0;
-    background-color: #f5f5f5;
+    background-color: #f0f2f5;
     min-height: 100vh;
 }
 
-/* Drilling card */
-#drilling_card {
-    width: 600px;
-    background-color: #ffffff;
+/* Shared card style */
+.drilling-card,
+.summary-card {
+    width: 90%;
+    max-width: 900px;        /* ← BIGGER */
+    background: #ffffff;
     border: 2px solid #d0d0d0;
-    border-radius: 12px;
-    padding: 30px 35px;
+    border-radius: 14px;
+    padding: 32px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     margin-bottom: 40px;
 }
 
-/* Drilling content section */
-#drilling_content {
-    margin-top: 25px;
-    background-color: #fafafa;
-    border: 2px solid #c8c8c8;
-    padding: 18px;
-    border-radius: 10px;
+/* Header */
+.drilling-header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-#drilling_content h2 {
-    font-size: 22px;
-    margin-bottom: 8px;
+.drilling-header h1 {
+    font-size: 36px;
+    font-weight: 700;
     color: #333;
 }
 
-#drilling_content p {
-    font-size: 16px;
-    color: #555;
+.sub-info {
+    font-size: 20px;
+    color: #666;
 }
 
-/* User input section */
-#user_input {
-    margin-top: 25px;
+/* Section blocks */
+.section {
+    margin-bottom: 30px;
 }
 
-#user_input input {
+.section-label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #444;
+    display: block;
+}
+
+/* Textareas and inputs */
+.section-box,
+.section-input {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    min-height: 140px;       /* ← MUCH BIGGER */
+    padding: 16px;
+    font-size: 18px;         /* ← Larger text */
     border: 2px solid #c8c8c8;
     border-radius: 10px;
     background-color: #fafafa;
+    resize: vertical;
 }
 
-/* Footer buttons (Send) */
-.card-footer {
-    margin-top: 25px;
+.section-input {
+    min-height: auto;        /* Inputs stay normal height */
+}
+
+/* Buttons */
+.button-row {
     display: flex;
+    gap: 20px;
     justify-content: center;
+    margin-top: 10px;
 }
 
-.card-footer button {
-    width: 160px;
-    padding: 12px 0;
-    font-size: 16px;
+.btn {
+    padding: 14px 26px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease;
+}
+
+.btn.primary {
     background-color: #4a90e2;
     color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-footer button:hover {
+.btn.primary:hover {
     background-color: #3b7ac0;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
-.card-footer button:active {
-    background-color: #346ea8;
+.btn.danger {
+    background-color: #e24a4a;
+    color: white;
 }
 
-/* Summary card (unchanged structure, styled to match) */
-#ai_summary {
-    width: 600px;
-    background-color: #ffffff;
-    border: 2px solid #d0d0d0;
-    border-radius: 12px;
-    padding: 25px 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+.btn.danger:hover {
+    background-color: #c03b3b;
 }
 
-.summary h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #333;
+.back-btn {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+    background-color: #777;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
 }
 
-.summary p {
-    font-size: 16px;
-    color: #555;
+.back-btn:hover {
+    background-color: #555;
 }
