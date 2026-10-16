@@ -7,6 +7,14 @@
     color: #333;
 }
 
+.home_card h2 {
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #6c6c6c;
+    font-style: italic;
+}
+
 /* Dropdown section wrapper */
 .home_card > div {
     margin-bottom: 20px;

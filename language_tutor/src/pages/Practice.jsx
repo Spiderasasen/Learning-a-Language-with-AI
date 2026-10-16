@@ -162,10 +162,10 @@ function Practice() {
                 {!started && (
                     <>
                         <button id="start_button"
-                        onClick = {() => {
+                        onClick = {async () => {
                             setStarted(true);
                             clearConversationHistory();
-                            sendMessage();
+                            await sendMessage();
                             setUserInput("");
                         }}>
                             Start
@@ -179,14 +179,17 @@ function Practice() {
                 {started && (
                     <>
                         <button id="send_button"
-                        onClick={sendMessage}
+                        onClick={async () => {
+                            await sendMessage();
+                            setUserInput("");
+                        }}
                         >Send</button>
 
                         <button
                             id="end_button"
-                            onClick={() => {
+                            onClick={async () => {
                                 setStarted(false);
-                                endConversation();
+                                await endConversation();
                                 setUserInput("");
                             }}
                         >
