@@ -22,7 +22,7 @@ function Drilling() {
         setLoadingWord(true);
 
         try{
-            const res = await fetch("http://localhost:3001/api/drilling", {
+            const res = await fetch("/api/drilling", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -48,7 +48,7 @@ function Drilling() {
     async function getResponse(){
         setLoadingResponse(true);
         try{
-            const res = await fetch("http://localhost:3001/api/checkSentence", {
+            const res = await fetch("/api/checkSentence", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(
