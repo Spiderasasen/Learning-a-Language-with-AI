@@ -46,6 +46,8 @@ function Drilling() {
 
         const response = await res.json();
         setAiResponse(response.aiResponse);
+
+        return response.aiResponse;
     }
 
     return (
@@ -86,7 +88,15 @@ function Drilling() {
                         {/* SEND BUTTON */}
                         {sendButton && (
                             <button
-                                onClick={getResponse}
+                                onClick={async () => {
+                                    const response = await getResponse();
+                                    console.log("Response:", response);
+                                    if (response === "Sentence is good and understable") {
+                                        console.log("Sentence is good and understable, getting a new word");
+                                        await getWord();
+                                    }
+
+                                }}
                             >
                                 Send
                             </button>
