@@ -22,7 +22,6 @@ function Home() {
                         null_option="Select a language"
                         option1="Spanish"
                         option2="German"
-                        option3="Italian"
                         onChange={(e) => setLanguage(e.target.value)}
                     />
 
