@@ -4,6 +4,7 @@ import "../styles/loading.css"
 import {NavLink} from "react-router-dom";
 import {useContext, useState} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
+import {downloadFile} from "../util/downloadFile.js";
 
 function Drilling() {
     const {language, level} = useContext(SelectionContext);
@@ -16,6 +17,8 @@ function Drilling() {
     const [aiResponse, setAiResponse] = useState("");
     const [loadingWord, setLoadingWord] = useState(false);
     const [loadingResponse, setLoadingResponse] = useState(false);
+    const [log, setLog] = useState([]);
+    const [download, setDownload] = useState(false);
 
     //getting the word from the ai
     async function getWord(){
@@ -64,6 +67,13 @@ function Drilling() {
             const response = await res.json();
             setAiResponse(response.aiResponse);
 
+            //saving the response
+            setLog(prev =>[...prev, {
+                word: aiWord,
+                sentence: userSentence,
+                feedback: response.aiResponse
+            }])
+
             return response.aiResponse;
         }
         catch(err){
@@ -73,6 +83,16 @@ function Drilling() {
         finally {
             setLoadingResponse(false);
         }
+    }
+
+    //downloading the drilling
+    function downloadDrilling(){
+        const text = log
+            .map((e,i) => `${i+1}. Word: ${e.word}\n
+            You: ${e.sentence}\n
+            EULIA: ${e.feedback}\n`)
+            .join("\n\n");
+        downloadFile("eulia-drilling.txt", text, "text/plain");
     }
 
     return (
@@ -127,6 +147,9 @@ function Drilling() {
                             Start
                         </button>
                     )}
+                    {(startButton && download) && (
+                        <button className="btn" onClick={downloadDrilling}>Download your attempt!</button>
+                    )}
 
                     {sendButton && (
                         <>
@@ -150,6 +173,7 @@ function Drilling() {
                                     setSendButton(false);
                                     setAiWord("");
                                     setAiResponse("");
+                                    setDownload(true);
                                 }}
                             >
                                 Stop

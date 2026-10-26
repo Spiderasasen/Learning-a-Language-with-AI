@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {useContext, useState, useRef} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
 import locations from "../data/locations.json";
+import {downloadFile} from "../util/downloadFile.js";
 
 function Practice() {
     const {language, level} = useContext(SelectionContext);
@@ -119,15 +120,7 @@ function Practice() {
         const text = historyRef.current
             .map(m => `${m.role === "user" ? "You" : "EULIA"} : ${m.content}`)
             .join("\n");
-        const blob = new Blob([text], {type: "text/plain"});
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "eulia-conversation.txt";
-        a.click();
-
-        URL.revokeObjectURL(url);
+        downloadConversation("eulia-conversation.txt", text, "text/plain");
     }
 
     function clearConversationHistory() {
