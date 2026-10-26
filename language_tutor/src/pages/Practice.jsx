@@ -10,6 +10,7 @@ function Practice() {
     const {language, level} = useContext(SelectionContext);
     const [started, setStarted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [talking, setTalking] = useState(false);
 
     //so the ai forgets its conversation history
     const historyRef = useRef([]);
@@ -112,6 +113,23 @@ function Practice() {
 
     }
 
+    //downloading the conversation
+    function downloadConversation(){
+        //pretty print JSON
+        const text = historyRef.current
+            .map(m => `${m.role === "user" ? "You" : "EULIA"} : ${m.content}`)
+            .join("\n");
+        const blob = new Blob([text], {type: "text/plain"});
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "eulia-conversation.txt";
+        a.click();
+
+        URL.revokeObjectURL(url);
+    }
+
     function clearConversationHistory() {
         historyRef.current = [];
     }
@@ -174,6 +192,10 @@ function Practice() {
                         <NavLink to="/selection" className="button" >Go Back</NavLink>
                     </>
                 )}
+                {/*this is the download the conversations button*/}
+                {(!started && talking) && (
+                    <button onClick={downloadConversation}>Download your Conversation!</button>
+                )}
 
                 {/*only shows when the user clicked the start button*/}
                 {started && (
@@ -191,6 +213,7 @@ function Practice() {
                                 setStarted(false);
                                 await endConversation();
                                 setUserInput("");
+                                setTalking(true);
                             }}
                         >
 
