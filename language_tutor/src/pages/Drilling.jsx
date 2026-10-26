@@ -142,6 +142,7 @@ function Drilling() {
                                 getWord();
                                 setStartButton(false);
                                 setSendButton(true);
+                                setLog([]);
                             }}
                         >
                             Start
