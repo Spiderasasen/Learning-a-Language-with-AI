@@ -20,7 +20,7 @@ function Home() {
                     <Drop_down_selection_component
                         id="language_selection"
                         null_option="Select a language"
-                        option1="Spanish"
+                        option1="Italian"
                         option2="German"
                         onChange={(e) => setLanguage(e.target.value)}
                     />
