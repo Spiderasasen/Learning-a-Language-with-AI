@@ -120,7 +120,7 @@ function Practice() {
         const text = historyRef.current
             .map(m => `${m.role === "user" ? "You" : "EULIA"} : ${m.content}`)
             .join("\n");
-        downloadConversation("eulia-conversation.txt", text, "text/plain");
+        downloadFile("eulia-conversation.txt", text, "text/plain");
     }
 
     function clearConversationHistory() {
