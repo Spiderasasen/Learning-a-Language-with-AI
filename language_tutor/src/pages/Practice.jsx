@@ -140,18 +140,27 @@ function Practice() {
             {/*where the roleplay between the user and the ai will be*/}
             <div id="roleplay_card">
                 <div className="user_input">
-                    <label htmlFor="user_input">Your Input</label>
-                    <input id="user_input"
-                           type="text"
-                           placeholder="Type here"
-                           value={userInput}
-                           onChange={(e) => setUserInput(e.target.value)}
-                    />
+                    {!started && (
+                        <>
+                            <p id="placeHolder">Please start the roleplay to input your responses</p>
+                        </>
+                    )}
+                    {started && (
+                        <>
+                            <label htmlFor="user_input">Your Input:</label>
+                            <textarea id="user_input"
+                                      type="text"
+                                      placeholder="Type here"
+                                      value={userInput}
+                                      onChange={(e) => setUserInput(e.target.value)}
+                            />
+                        </>
+                    )}
                 </div>
 
                 {/*ai response area*/}
                 <div className="ai_response">
-                    <label htmlFor="ai_response">EULIA Response</label>
+                    <label htmlFor="ai_response">EULIA Response:</label>
 
                     {loading ? (
                         <div className="typing-loader">EULIA is thinking<span className="dots"></span></div>

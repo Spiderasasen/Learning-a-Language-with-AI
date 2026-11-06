@@ -54,10 +54,25 @@
 #ai_response {
     background-color: #e6e6e6;
     color: #444;
-    min-height: 120px;   /* ← This makes it taller */
+    min-height: 200px;   /* ← This makes it taller */
     padding: 14px;       /* optional: slightly more padding */
 }
 
+/*making the height of the text area to be a bit bigger*/
+#user_input{
+    height: 120px;
+    resize: vertical;
+}
+
+/*placeholder design*/
+#placeHolder{
+    border: 2px solid #c8c8c8;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    padding: 12px;
+    font-style: italic;
+    color: #777;
+}
 
 /* Button section (matches main.css button style) */
 .button_section {
