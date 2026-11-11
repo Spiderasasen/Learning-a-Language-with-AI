@@ -1,18 +1,19 @@
 .typing-loader {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     font-weight: 600;
     color: #b59a57;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     font-family: "Inter", sans-serif;
 }
 
 .typing-loader .dots {
     display: inline-block;
-    width: 24px;
+    width: 1.5em;
     text-align: left;
-    letter-spacing: 2px;
+    letter-spacing: 0.1em;
     animation: typingDots 1.4s steps(4, end) infinite;
 }
 

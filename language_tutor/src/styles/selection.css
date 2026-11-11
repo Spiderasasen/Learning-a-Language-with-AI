@@ -2,20 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 12% 25%;
+    box-sizing: border-box;
+    width: min(90%, 40rem);
+    margin: clamp(2rem, 10vh, 6rem) auto;
     border: 2px solid #d0d0d0;
-    border-radius: 12px;
-    padding: 30px 35px;
+    border-radius: 0.75rem;
+    padding: clamp(1.25rem, 4vw, 2.2rem);
     background-color: #ffffff;
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-/* Layout for the two cards */
+/* Layout for the cards - wraps onto a new row on narrow screens */
 #image_section {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
-    margin-top: 25px;
+    gap: clamp(1rem, 4vw, 2.5rem);
+    margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Remove default link styling */
@@ -24,16 +28,22 @@
     color: inherit;
 }
 
+#image_section > a.nav {
+    flex: 0 1 11rem;
+    min-width: 8rem;
+}
+
 /* Each card (image + label) */
 #image_section > a.nav > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 18px;
-    width: 180px;
+    box-sizing: border-box;
+    padding: 1.1rem;
+    width: 100%;
     background-color: #ffffff;
     border: 2px solid #d0d0d0;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
@@ -54,16 +64,19 @@
 
 /* Image styling */
 .image {
-    width: 120px;
-    height: 120px;
+    width: clamp(5rem, 25vw, 7.5rem);
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
     object-fit: contain;
-    margin-bottom: 10px;
+    margin-bottom: 0.6rem;
 }
 
 /* Label text */
 #image_section p {
-    font-size: 18px;
+    font-size: clamp(1rem, 3vw, 1.125rem);
     font-weight: 500;
     color: #333;
     margin: 0;
+    text-align: center;
 }

@@ -3,50 +3,52 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 0;
+    padding: clamp(1rem, 5vw, 2.5rem) 0;
     background-color: #f0f2f5;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 /* Shared card style */
 .drilling-card,
 .summary-card {
     width: 90%;
-    max-width: 900px;        /* ← BIGGER */
+    max-width: 56rem;
+    box-sizing: border-box;
     background: #ffffff;
     border: 2px solid #d0d0d0;
-    border-radius: 14px;
-    padding: 32px;
+    border-radius: 0.9rem;
+    padding: clamp(1rem, 4vw, 2rem);
     box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
 /* Header */
 .drilling-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: clamp(1.25rem, 4vw, 1.9rem);
 }
 
 .drilling-header h1 {
-    font-size: 36px;
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
     font-weight: 700;
     color: #333;
 }
 
 .sub-info {
-    font-size: 20px;
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
     color: #666;
 }
 
 /* Section blocks */
 .section {
-    margin-bottom: 30px;
+    margin-bottom: clamp(1.25rem, 4vw, 1.9rem);
 }
 
 .section-label {
-    font-size: 20px;
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
     color: #444;
     display: block;
 }
@@ -55,13 +57,15 @@
 .section-box,
 .section-input {
     width: 100%;
-    min-height: 140px;       /* ← MUCH BIGGER */
-    padding: 16px;
-    font-size: 18px;         /* ← Larger text */
+    box-sizing: border-box;
+    min-height: clamp(7rem, 25vh, 9rem);
+    padding: clamp(0.75rem, 3vw, 1rem);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
     border: 2px solid #c8c8c8;
-    border-radius: 10px;
+    border-radius: 0.6rem;
     background-color: #fafafa;
     resize: vertical;
+    overflow-wrap: anywhere;
 }
 
 .section-input {
@@ -71,15 +75,17 @@
 /* Buttons */
 .button-row {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0.6rem;
 }
 
 .btn {
-    padding: 14px 26px;
-    font-size: 18px;
-    border-radius: 10px;
+    padding: 0.85rem 1.6rem;
+    min-height: 2.75rem;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    border-radius: 0.6rem;
     cursor: pointer;
     border: none;
     transition: 0.2s ease;
@@ -105,14 +111,24 @@
 
 .back-btn {
     display: block;
-    margin-top: 25px;
+    margin-top: 1.5rem;
     text-align: center;
     background-color: #777;
     color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.6rem;
 }
 
 .back-btn:hover {
     background-color: #555;
+}
+
+/* Phones: stack the buttons full width */
+@media (max-width: 37.5em) {
+    .button-row {
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
 }

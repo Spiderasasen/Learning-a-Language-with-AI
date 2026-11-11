@@ -1,11 +1,6 @@
 /* Button section */
 .button_section {
-    margin-top: 25px;
-}
-
-/* Next button */
-.button_section {
-    margin-top: 30px;
+    margin-top: 1.9rem;
     display: flex;
     justify-content: center;
 }
@@ -13,12 +8,14 @@
 /* Style the NavLink like a real button */
 .button {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem;
+    min-height: 2.75rem;            /* comfortable touch target */
+    box-sizing: border-box;
     background-color: #4a90e2;
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    border-radius: 8px;
+    font-size: 1rem;
+    border-radius: 0.5rem;
     border: 2px solid #3b7ac0;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -34,50 +31,50 @@
     background-color: #346ea8;
 }
 
-
 /*main code that will be used on all sections*/
 .main{
     font-family: Verdana, Arial, sans-serif;
 }
 
 .home_card {
-    width: 420px;
-    margin: 12% auto;
-    padding: 30px 35px;
+    width: min(90%, 26rem);                 /* shrinks on phones, caps on desktop */
+    margin: clamp(2rem, 12vh, 7rem) auto;
+    padding: clamp(1.25rem, 4vw, 2.2rem);
+    box-sizing: border-box;
     background-color: #ffffff;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     text-align: center;
 }
 
 /* Title card section */
 .card-title h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
+    margin-bottom: 0.6rem;
     color: #333;
 }
 
 .card-title h2,
 .card-title h3 {
-    font-size: 18px;
+    font-size: clamp(1rem, 3.5vw, 1.125rem);
     color: #555;
-    margin: 4px 0;
+    margin: 0.25rem 0;
 }
 
 /* Leave button */
 .button_sectiont {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     text-align: center;
 }
 
 .button_sectiont .button {
-    width: 160px;
-    padding: 12px 0;
-    font-size: 16px;
+    width: min(10rem, 100%);
+    padding: 0.75rem 0;
+    font-size: 1rem;
     background-color: #e24a4a;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }

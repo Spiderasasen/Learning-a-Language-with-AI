@@ -2,16 +2,18 @@
 .drop_down_section {
     display: flex;
     flex-direction: column;
-    margin: 12px 0;
+    margin: 0.75rem 0;
 }
 
 /* Dropdown element */
 .drop_down_section select {
-    width: 220px;
-    padding: 10px 12px;
-    font-size: 16px;
+    width: min(80vw, 14rem);        /* never wider than the screen */
+    min-height: 2.75rem;            /* easy to tap */
+    box-sizing: border-box;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;                /* 16px+ stops iOS zooming on focus */
     border: 2px solid #d0d0d0;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: #fafafa;
     color: #333;
     cursor: pointer;
@@ -32,5 +34,5 @@
 
 /* Option styling */
 .drop_down_section option {
-    font-size: 16px;
+    font-size: 1rem;
 }

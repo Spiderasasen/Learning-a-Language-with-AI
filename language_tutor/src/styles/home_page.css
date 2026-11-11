@@ -1,9 +1,7 @@
-/* Main card container */
-
 /* Title */
 .home_card h1 {
-    font-size: 28px;
-    margin-bottom: 25px;
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
+    margin-bottom: 1.5rem;
     color: #333;
 }
 
@@ -17,24 +15,28 @@
 
 /* Dropdown section wrapper */
 .home_card > div {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
 }
 
-
-/*mobile view*/
-@media (max-width: 1024px) {
+/* Tablets */
+@media (max-width: 64em) {
     .home_card {
-        width: 60%;
-        margin: 8% auto;
-    }
-    .home_card h1 {
-        font-size: 24px;
+        width: min(80%, 30rem);
+        margin: 8vh auto;
     }
     .home_card > div {
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Phones */
+@media (max-width: 37.5em) {
+    .home_card {
+        width: 92%;
+        margin: 4vh auto;
     }
 }
