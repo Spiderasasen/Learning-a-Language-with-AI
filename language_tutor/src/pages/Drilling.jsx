@@ -30,7 +30,8 @@ function Drilling() {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     lang: language,
-                    level: level
+                    level: level,
+                    previousWords: log.map(entry => entry.word)
                 })
             });
 
