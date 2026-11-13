@@ -22,6 +22,10 @@
     flex-direction: column;
 }
 
+#acro_sub_title{
+    font-size: small;
+}
+
 /* Tablets */
 @media (max-width: 64em) {
     .home_card {
@@ -31,6 +35,9 @@
     .home_card > div {
         margin-bottom: 1rem;
     }
+    #acro_sub_title{
+        font-size: small;
+    }
 }
 
 /* Phones */
@@ -38,5 +45,8 @@
     .home_card {
         width: 92%;
         margin: 4vh auto;
+    }
+    #acro_sub_title{
+        font-size: x-small;
     }
 }

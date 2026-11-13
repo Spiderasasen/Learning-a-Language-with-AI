@@ -198,7 +198,7 @@ function Drilling() {
                 )}
 
                 {startButton && (
-                    <NavLink to="/selection" className="btn back-btn">
+                    <NavLink to="/selection" className="back-btn">
                         Go Back
                     </NavLink>
                 )}

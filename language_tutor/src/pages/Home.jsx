@@ -12,7 +12,7 @@ function Home() {
         <div className="main">
             <div className="home_card">
                 <h1>Welcome to EULIA</h1>
-                <h2>Elon.University's.Linguistics.Intelgense.Artificial</h2>
+                <h2 id="acro_sub_title">Elon.University's.Linguistics.Intelgense.Artificial</h2>
 
                 {/*drop downs*/}
                 <div>
