@@ -147,7 +147,7 @@ function Practice() {
                         </>
                     )}
                     {started && (
-                        <UserInput />
+                        <UserInput userInput={userInput} setUserInput={setUserInput}/>
                     )}
                 </div>
 

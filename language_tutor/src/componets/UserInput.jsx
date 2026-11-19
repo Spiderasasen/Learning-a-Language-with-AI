@@ -1,4 +1,4 @@
-function UserInput() {
+function UserInput({userInput, setUserInput}) {
     return(
         <>
             <label htmlFor="user_input">Your Input:</label>
@@ -7,7 +7,9 @@ function UserInput() {
                       placeholder="Type here"
                       value={userInput}
                       onChange={(e) => setUserInput(e.target.value)}
+                      maxLength={200}
             />
+            <p>{userInput.length}/200</p>
         </>
     )
 }
