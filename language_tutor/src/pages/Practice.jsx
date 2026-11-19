@@ -6,6 +6,7 @@ import {useContext, useState, useRef} from "react";
 import {SelectionContext} from "../componets/SelectionContext.jsx";
 import locations from "../data/locations.json";
 import {downloadFile} from "../util/downloadFile.js";
+import UserInput from "../componets/UserInput.jsx";
 
 function Practice() {
     const {language, level} = useContext(SelectionContext);
@@ -146,15 +147,7 @@ function Practice() {
                         </>
                     )}
                     {started && (
-                        <>
-                            <label htmlFor="user_input">Your Input:</label>
-                            <textarea id="user_input"
-                                      type="text"
-                                      placeholder="Type here"
-                                      value={userInput}
-                                      onChange={(e) => setUserInput(e.target.value)}
-                            />
-                        </>
+                        <UserInput />
                     )}
                 </div>
 
