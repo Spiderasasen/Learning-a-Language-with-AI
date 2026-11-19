@@ -9,7 +9,7 @@ function UserInput({userInput, setUserInput}) {
                       onChange={(e) => setUserInput(e.target.value)}
                       maxLength={200}
             />
-            <p>{userInput.length}/200</p>
+            <p style={{fontStyle: "italic", color: "gray", fontSize: "medium"}}>{userInput.length}/200</p>
         </>
     )
 }
